@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Centered Horizontal Slider</title>
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <!-- Page 1 -->
+    <section class="page page-1">
+      <h2>Page 1</h2>
+    </section>
+
+    <!-- Page 2 -->
+    <section class="page page-2">
+      <h2>Page 2</h2>
+    </section>
+
+    <!-- Horizontal Slider Section -->
+    <section class="horizontal-slider" id="horizontalSlider">
+      <div class="slides">
+        <!-- Extra gap slide so initial text isn’t immediately pushed off -->
+        <div class="slide gap"><h1>&nbsp;</h1></div>
+        <!-- 25 letter slides for "AN AARON EINSTEIN PROJECT" -->
+        <div class="slide"><h1>A</h1></div>
+        <div class="slide"><h1>N</h1></div>
+        <div class="slide"><h1>&nbsp;</h1></div>
+        <div class="slide"><h1>A</h1></div>
+        <div class="slide"><h1>A</h1></div>
+        <div class="slide"><h1>R</h1></div>
+        <div class="slide"><h1>O</h1></div>
+        <div class="slide"><h1>N</h1></div>
+        <div class="slide"><h1>&nbsp;</h1></div>
+        <div class="slide"><h1>E</h1></div>
+        <div class="slide"><h1>I</h1></div>
+        <div class="slide"><h1>N</h1></div>
+        <div class="slide"><h1>S</h1></div>
+        <div class="slide"><h1>T</h1></div>
+        <div class="slide"><h1>E</h1></div>
+        <div class="slide"><h1>I</h1></div>
+        <div class="slide"><h1>N</h1></div>
+        <div class="slide"><h1>&nbsp;</h1></div>
+        <div class="slide"><h1>P</h1></div>
+        <div class="slide"><h1>R</h1></div>
+        <div class="slide"><h1>O</h1></div>
+        <div class="slide"><h1>J</h1></div>
+        <div class="slide"><h1>E</h1></div>
+        <div class="slide"><h1>C</h1></div>
+        <div class="slide"><h1>T</h1></div>
+        <!-- Spacer slide (wider gap) -->
+        <div class="slide spacer"><h1>&nbsp;</h1></div>
+        <!-- Final slide: Video -->
+        <div class="slide video-slide">
+          <video muted loop playsinline id="videoSlide">
+            <source src="./assets/Tick_Repellent_Test.mp4" type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 4 -->
+    <section class="page page-4">
+      <h2>Page 4</h2>
+      <p>After finishing the slider, you land here.</p>
+    </section>
+
+    <script src="assets/script.js"></script>
+  </body>
+</html>

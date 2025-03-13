@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  font-family: "Roboto Mono", monospace;
+  background: #f7f7f7;
+}
+
+/* Fullscreen vertical pages */
+.page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #f0f0f0, #ffffff);
+  border-bottom: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.page h2 {
+  font-size: 3rem;
+  color: #444;
+}
+
+/* Horizontal slider section (60vh tall) with animated background */
+.horizontal-slider {
+  width: 100vw;
+  height: 60vh;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  /* Base background gradient */
+  /* background: linear-gradient(135deg, #88c0d0, #81a1c1); */
+  background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);
+}
+
+/* Animated overlay using a pseudo-element */
+.horizontal-slider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.1),
+    transparent 70%
+  );
+  animation: bgPan 20s linear infinite;
+  z-index: -1;
+}
+
+/* Keyframes for the background animation */
+@keyframes bgPan {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Total slides:
+   - 1 gap (9vw) + 25 letters (25 * 9vw = 225vw) + 1 spacer (25vw) + 1 video (9vw)
+   = 9 + 225 + 25 + 9 = 268vw.
+*/
+.slides {
+  position: relative;
+  width: 268vw; /* Updated to 268vw */
+  height: 60vh;
+  display: flex;
+  transform: translateX(0);
+  transition: none;
+}
+
+/* Each normal slide is 9vw wide and 60vh tall */
+.slide {
+  width: 9vw;
+  height: 60vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spacer slide is wider */
+.spacer {
+  width: 25vw;
+}
+
+/* Big letters */
+.slide h1 {
+  font-size: 30vh;
+  margin: 0;
+  line-height: 1;
+  color: #111;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0;
+}
+
+/* Video slide: video takes full slider height */
+.video-slide video {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: styles for gap slides */
+.gap h1,
+.spacer h1 {
+  color: #888;
+}
