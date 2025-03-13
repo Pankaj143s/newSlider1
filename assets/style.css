@@ -4,7 +4,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  overflow-x: hidden;
   font-family: "Roboto Mono", monospace;
   background: #f7f7f7;
 }
@@ -25,59 +25,27 @@ body {
   color: #444;
 }
 
-/* Horizontal slider section (60vh tall) with animated background */
+/* Horizontal Slider (60vh tall) */
 .horizontal-slider {
   width: 100vw;
   height: 60vh;
   overflow: hidden;
+  background: lightblue; /* For debugging */
   margin: 0 auto;
   position: relative;
-  /* Base background gradient */
-  /* background: linear-gradient(135deg, #88c0d0, #81a1c1); */
-  background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);
 }
 
-/* Animated overlay using a pseudo-element */
-.horizontal-slider::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.1),
-    transparent 70%
-  );
-  animation: bgPan 20s linear infinite;
-  z-index: -1;
-}
-
-/* Keyframes for the background animation */
-@keyframes bgPan {
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    transform: translate(-50%, -50%);
-  }
-}
-
-/* Total slides:
-   - 1 gap (9vw) + 25 letters (25 * 9vw = 225vw) + 1 spacer (25vw) + 1 video (9vw)
-   = 9 + 225 + 25 + 9 = 268vw.
-*/
+/* The container of slides (default desktop) */
 .slides {
   position: relative;
-  width: 268vw; /* Updated to 268vw */
-  height: 60vh;
   display: flex;
+  width: 268vw; /* Desktop default */
+  height: 60vh;
   transform: translateX(0);
   transition: none;
 }
 
-/* Each normal slide is 9vw wide and 60vh tall */
+/* Default slides: 9vw each for letters, 25vw for spacer (see below for breakpoints) */
 .slide {
   width: 9vw;
   height: 60vh;
@@ -86,13 +54,11 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-/* Spacer slide is wider */
 .spacer {
   width: 25vw;
 }
 
-/* Big letters */
+/* Letters: big on desktop */
 .slide h1 {
   font-size: 30vh;
   margin: 0;
@@ -102,7 +68,7 @@ body {
   letter-spacing: 0;
 }
 
-/* Video slide: video takes full slider height */
+/* Video: fully fill the slide on desktop */
 .video-slide video {
   height: 100%;
   width: auto;
@@ -111,8 +77,61 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Optional: styles for gap slides */
+/* Gap & spacer text color */
 .gap h1,
 .spacer h1 {
   color: #888;
+}
+
+/* --- Tablet (max-width: 992px and min-width: 600px) --- */
+@media (max-width: 992px) and (min-width: 600px) {
+  /*
+    We have 1 gap + 25 letters + 1 spacer + 1 video => 28 slides
+    Each letter is 15vw, spacer 30vw, final video 15vw => total:
+    gap(15) + letters(25*15=375) + spacer(30) + video(15)
+    = 15 + 375 + 30 + 15 = 435vw
+  */
+  .slides {
+    width: 435vw;
+  }
+  .slide {
+    width: 15vw;
+  }
+  .spacer {
+    width: 30vw;
+  }
+  .slide h1 {
+    font-size: 15vh;
+  }
+  /* Let the video fill but shrink if needed */
+  .video-slide video {
+    height: 100%;
+    width: auto;
+    object-fit: contain; /* so it doesn't overflow */
+  }
+}
+
+/* --- Mobile (max-width: 599px) --- */
+@media (max-width: 599px) {
+  /*
+    1 gap(25vw) + 25 letters(25*25=625) + 1 spacer(35vw) + 1 video(25vw)
+    = 25 + 625 + 35 + 25 = 710vw
+  */
+  .slides {
+    width: 710vw;
+  }
+  .slide {
+    width: 25vw;
+  }
+  .spacer {
+    width: 35vw;
+  }
+  .slide h1 {
+    font-size: 8vh; /* smaller so letters never overlap vertically */
+  }
+  .video-slide video {
+    height: 80%; /* a bit smaller so it fits small screens */
+    width: auto;
+    object-fit: contain;
+  }
 }
